@@ -41,15 +41,14 @@ void spi_enable_pins(void) {
   gpio_set(GPIO_BANK_SPI1, GPIO_SPI1_NSS);
 }
 
+
 uint32_t spi_setup(uint32_t speed_hz) {
   uint32_t clkdiv;
   uint32_t relspd;
-
   rcc_periph_clock_enable(RCC_SPI1);
 
 #ifdef STM32F0
   rcc_periph_clock_enable(RCC_DMA);
-  uint32_t rcc_apb2_frequency = rcc_apb1_frequency; /* STM32F0x2 only has one APB. */
 #else
   rcc_periph_clock_enable(RCC_DMA1);
 #endif /* STM32F0 */
